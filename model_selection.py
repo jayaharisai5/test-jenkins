@@ -11,12 +11,18 @@ import pickle
 import os
 
 import boto3
-client = boto3.client('s3')
+s3 = boto3.client(
+    's3',
+    aws_access_key_id='AKIA3YG72WSKAY3DQARO',
+    aws_secret_access_key='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',
+    region_name='us-east-1'
+) #1
+
 
 def upload_files(file_name, bucket, object_name=None, args=None):
     if object_name is None:
         object_name=file_name
-    response=client.upload_file(file_name, bucket, object_name, ExtraArgs=args)
+    response=s3.upload_file(file_name, bucket, object_name, ExtraArgs=args)
     print(response)
 
 
@@ -47,6 +53,7 @@ def model_selection():
     
     filename = 'finalised_model.pkl'
     pickle.dump(b,open(filename,'wb'))
+    upload_files("finalised_model.pkl", "mlops-storage1")
     '''rt5y6uio
     loaded_model = pickle.load(open(filename,'rb'))
     result1 = loaded_model.score(X_test, y_test)
