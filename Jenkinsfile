@@ -17,17 +17,17 @@ pipeline{
                 sh 'python3 load_data.py'
             }
         }
-        stage("feature_engineering"){
+        stage("data_analysis"){
             steps{
                 sh 'python3 data_analysis.py'
             }
         }
-        stage("pre_processing"){
+        stage("feature_engineering"){
             steps{
                 sh 'python3 feature_engineering.py'
             }
         }
-        stage("model_selection"){
+        stage("data_preprocessing"){
             steps{
                 sh 'python3 data_preprocessing.py'
             }
