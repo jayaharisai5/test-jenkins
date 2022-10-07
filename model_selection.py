@@ -44,17 +44,18 @@ def model_selection():
         b = lr
     print(a,b)
     b.fit(X_train, y_train)
+    '''
     filename = 'finalised_model.pkl'
     pickle.dump(b,open(filename,'wb'))
-    '''loaded_model = pickle.load(open(filename,'rb'))
+    loaded_model = pickle.load(open(filename,'rb'))
     result1 = loaded_model.score(X_test, y_test)
     result2 = loaded_model.predict(X_test)
     f1_score = f1_score(y_test, result2)
     print(result1, result2)
-    print(f1_score)'''
+    print(f1_score)
 
     upload_files("finalised_model.pkl", "mlops-storage1")
     os.remove("finalised_model.pkl")
-    
+    '''
 
 model_selection()
