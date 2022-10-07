@@ -28,6 +28,4 @@ def dvc():
 
 
     print("Deleting the unwanted files......")
-    os.remove("cleaned_data.csv")
-    os.remove("cleaned_data.csv.dvc")
     print("DVC Done")
