@@ -22,14 +22,14 @@ pipeline{
                 sh 'python3 data_analysis.py'
             }
         }
-        stage("model_selection"){
-            steps{
-                sh 'python3 dvc.py'
-            }
-        }
         stage("feature_engineering"){
             steps{
                 sh 'python3 feature_engineering.py'
+            }
+        }
+        stage("dvc"){
+            steps{
+                sh 'python3 dvc.py'
             }
         }
         stage("data_preprocessing"){
