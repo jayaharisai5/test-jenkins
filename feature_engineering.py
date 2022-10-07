@@ -1,6 +1,13 @@
 import numpy as np
 import pandas as pd
 from data_analysis import data_analysis
+import boto3
+s3 = boto3.client(
+    's3',
+    aws_access_key_id='AKIA3YG72WSKAY3DQARO',
+    aws_secret_access_key='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',
+    region_name='us-east-1'
+)
 def feature_engineering():
     data = data_analysis()
     y_no_count, y_yes_count =data['y'].value_counts()
@@ -42,3 +49,4 @@ def feature_engineering():
     print("Done with it......")
     return df4
 
+feature_engineering()

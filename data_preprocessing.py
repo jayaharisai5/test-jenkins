@@ -2,7 +2,9 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import pandas as pd
 from feature_engineering import feature_engineering
+from dvc import dvc
 def data_preprocess():
+    dvc()
     data = feature_engineering()
     X = data.drop(['y_new'],axis=1)
     y = data['y_new']

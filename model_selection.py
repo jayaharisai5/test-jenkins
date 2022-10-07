@@ -47,7 +47,7 @@ def model_selection():
     
     filename = 'finalised_model.pkl'
     pickle.dump(b,open(filename,'wb'))
-    '''
+    '''rt5y6uio
     loaded_model = pickle.load(open(filename,'rb'))
     result1 = loaded_model.score(X_test, y_test)
     result2 = loaded_model.predict(X_test)
