@@ -1,5 +1,6 @@
 import boto3
 import pandas as pd
+import numpy as np
 import csv
 s3 = boto3.client(
     's3',
@@ -13,5 +14,11 @@ data = obj['Body'].read().decode('utf-8').splitlines() #3
 records = csv.reader(data) #4
 headers = next(records) #5
 print('headers: %s' % (headers)) 
+a = []
 for eachRecord in records: #6
-    print(eachRecord)
+    a.append(eachRecord)
+
+my_array = np.array(a)
+#print(my_array)
+df = pd.DataFrame(my_array, columns = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'y'])
+print(df)
