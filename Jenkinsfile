@@ -40,8 +40,9 @@ pipeline{
         
     }
     post{
-        always{
-            emailext body:"summery", subject: "Pipeline Status", to: 'jayaharisai1212@gmail.com'
+       
+        always {
+            archiveArtifacts artifacts: 'finalised_model.pkl', onlyIfSuccessful: true
         }
     }
 }

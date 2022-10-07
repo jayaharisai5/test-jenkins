@@ -44,9 +44,10 @@ def model_selection():
         b = lr
     print(a,b)
     b.fit(X_train, y_train)
-    '''
+    
     filename = 'finalised_model.pkl'
     pickle.dump(b,open(filename,'wb'))
+    '''
     loaded_model = pickle.load(open(filename,'rb'))
     result1 = loaded_model.score(X_test, y_test)
     result2 = loaded_model.predict(X_test)
