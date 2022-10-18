@@ -29,7 +29,7 @@ def upload_files(file_name, bucket, object_name=None, args=None):
 
 def model_selection():
     X_train, X_test, y_train, y_test = data_preprocess()
-    cla_model_training(x_train, x_test, y_train, y_test)
+    cla_model_training(X_train, X_test, y_train, y_test)
     '''
     dt = DecisionTreeClassifier()
     dt.fit(X_train, y_train)
