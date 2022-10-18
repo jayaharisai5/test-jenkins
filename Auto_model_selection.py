@@ -71,6 +71,20 @@ en = lm.ElasticNet()
 par = lm.PassiveAggressiveRegressor()
 dr = d.DummyRegressor()
 
+import boto3
+s3 = boto3.client(
+    's3',
+    aws_access_key_id='AKIA3YG72WSKAY3DQARO',
+    aws_secret_access_key='RouWqYc5Dm3zedyUhYnx5hdV69i9A/QgSUxIfj72',
+    region_name='us-east-1'
+)
+
+def upload_files(file_name, bucket, object_name=None, args=None):
+    if object_name is None:
+        object_name=file_name
+    response=s3.upload_file(file_name, bucket, object_name, ExtraArgs=args)
+    print(response)
+
 
 ### Function to trian the best_model in the Classification Model
 def cla_model_training(x_train, x_test, y_train, y_test):
@@ -99,8 +113,9 @@ def cla_model_training(x_train, x_test, y_train, y_test):
     accuracy = accuracy_score(y_test, y_predict)
     f1score = f1_score(y_test, y_predict)
 
-    with open("best_model_classification.pkl", 'wb') as p:          #Creating a pickle file for the bets model
-        pickle.dump(best_model, p)
+    filename = 'best_model_classification.pkl'
+    pickle.dump(best_model,open(filename,'wb'))
+    upload_files("finalised_model.pkl", "mlops-storage1")
     
     return  dataframe, best_model, precision, recall, accuracy,f1score 
 
@@ -125,8 +140,10 @@ def reg_model_train(x_train, x_test, y_train, y_test):
             
     y_predict = best_model.predict(x_test)
 
-    with open("best_model_regression.pkl", 'wb') as p:              #Creating a pickle file for the bets model
-        pickle.dump(best_model, p)
+    
+    filename = 'best_model_regression.pkl'
+    pickle.dump(best_model,open(filename,'wb'))
+    upload_files("finalised_model.pkl", "mlops-storage1")
 
     MSE = mt.mean_squared_error(y_test, y_predict)
     RMSE = math.sqrt(MSE)

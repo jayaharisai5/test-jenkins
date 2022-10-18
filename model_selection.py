@@ -6,6 +6,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from data_preprocessing import data_preprocess
+from Auto_model_selection import cla_model_training
 import pandas as pd
 import pickle
 import os
@@ -28,6 +29,8 @@ def upload_files(file_name, bucket, object_name=None, args=None):
 
 def model_selection():
     X_train, X_test, y_train, y_test = data_preprocess()
+    cla_model_training(x_train, x_test, y_train, y_test)
+    '''
     dt = DecisionTreeClassifier()
     dt.fit(X_train, y_train)
     decision_tree= dt.score(X_test, y_test)
@@ -54,6 +57,7 @@ def model_selection():
     filename = 'finalised_model.pkl'
     pickle.dump(b,open(filename,'wb'))
     upload_files("finalised_model.pkl", "mlops-storage1")
+    '''
     '''rt5y6uio
     loaded_model = pickle.load(open(filename,'rb'))
     result1 = loaded_model.score(X_test, y_test)
