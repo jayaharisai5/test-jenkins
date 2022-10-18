@@ -1,9 +1,7 @@
 import boto3
 import pandas as pd
 import numpy as np
-import os 
 
-os.system("pip install xgboost")
 s3 = boto3.client(
     's3',
     aws_access_key_id='AKIA3YG72WSKAY3DQARO',
